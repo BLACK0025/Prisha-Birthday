@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday My Love ❤️</title>
 
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+color:white;
+background: linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow:hidden;
+}
+
+h1{
+font-size:55px;
+margin-top:80px;
+}
+
+p{
+font-size:22px;
+width:70%;
+margin:auto;
+line-height:1.6;
+}
+
+/* slideshow */
+
+.slideshow{
+width:250px;
+height:250px;
+margin:30px auto;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.slideshow img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+color:white;
+font-size:20px;
+animation: float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-100vh);opacity:0}
+}
+
+button{
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4b7d;
+margin-top:20px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Happy Birthday My Love 🎂</h1>
+
+<div class="slideshow">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<p id="message"></p>
+
+<button onclick="surprise()">Tap for a surprise ❤️</button>
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* typewriter message */
+
+let text="Prisha, even though I can't be with you today, my heart is right there with you. These months with you have been full of memories, laughter and love. We've had our ups and downs, but through everything I still choose you. Happy Birthday my love ❤️";
+
+let i=0;
+
+function typeWriter(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeWriter,40);
+}
+}
+
+typeWriter();
+
+/* slideshow */
+
+let images=["photo2.jpg","photo3.jpg"];
+let index=0;
+
+setInterval(()=>{
+index=(index+1)%images.length;
+document.getElementById("slide").src=images[index];
+},3000);
+
+/* hearts */
+
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+20)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+},300);
+
+/* surprise */
+
+function surprise(){
+alert("I love you Prisha ❤️ Happy Birthday!");
+}
+
+</script>
+
+</body>
+</html>
