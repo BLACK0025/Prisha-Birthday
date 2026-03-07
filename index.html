@@ -9,32 +9,30 @@ body{
 margin:0;
 font-family:Arial;
 text-align:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
 color:white;
-background: linear-gradient(135deg,#ff758c,#ff7eb3);
 overflow:hidden;
 }
 
 h1{
-font-size:55px;
 margin-top:80px;
+font-size:50px;
 }
 
 p{
-font-size:22px;
+font-size:20px;
 width:70%;
 margin:auto;
 line-height:1.6;
 }
 
-/* slideshow */
-
 .slideshow{
-width:250px;
-height:250px;
+width:260px;
+height:260px;
 margin:30px auto;
 border-radius:20px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 .slideshow img{
@@ -43,13 +41,22 @@ height:100%;
 object-fit:cover;
 }
 
-/* floating hearts */
+button{
+margin-top:20px;
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4b7d;
+cursor:pointer;
+}
 
 .heart{
 position:absolute;
 color:white;
-font-size:20px;
-animation: float 6s linear infinite;
+font-size:22px;
+animation:float 6s linear infinite;
 }
 
 @keyframes float{
@@ -57,57 +64,39 @@ animation: float 6s linear infinite;
 100%{transform:translateY(-100vh);opacity:0}
 }
 
-button{
-padding:15px 25px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:white;
-color:#ff4b7d;
-margin-top:20px;
-cursor:pointer;
-}
-
 </style>
+
 </head>
 
 <body>
 
-<h1>Happy Birthday My Love ❤️🎂</h1>
+<h1>Happy Birthday My Love 🎂</h1>
 
 <div class="slideshow">
 <img id="slide" src="photo1.jpg">
 </div>
 
-<p id="message"></p>
+<p>
+Prisha, you make my world brighter just by being in it.  
+Your smile, your voice, and your presence mean more to me than words can explain.  
+Today is special because the most beautiful soul I know was born.  
+Happy Birthday my love ❤️
+</p>
 
-<button onclick="surprise()">Tap for a surprise ❤️</button>
+<button onclick="startMusic()">Tap for a surprise ❤️</button>
 
-<audio autoplay loop>
-<source src="music.mp3.mp3" type="audio/mpeg">
+<audio id="song" loop>
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* typewriter message */
+let images=[
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg"
+];
 
-let text="Prisha, from the moment you came into my life, everything started feeling a little more beautiful. Your smile, your voice, and the way you exist in my world means more to me than I can ever fully explain. Being with you has been one of the most special parts of my life. I hope today reminds you how loved, precious, and irreplaceable you are. Happy Birthday my love ❤️";
-
-let i=0;
-
-function typeWriter(){
-if(i<text.length){
-document.getElementById("message").innerHTML+=text.charAt(i);
-i++;
-setTimeout(typeWriter,40);
-}
-}
-
-typeWriter();
-
-/* slideshow */
-
-let images=["photo1.jpg.jpeg","photo2.jpg.jpeg","photo3.jpg.jpeg"];
 let index=0;
 
 setInterval(()=>{
@@ -115,7 +104,11 @@ index=(index+1)%images.length;
 document.getElementById("slide").src=images[index];
 },3000);
 
-/* hearts */
+function startMusic(){
+let song=document.getElementById("song");
+song.play();
+alert("I love you Prisha ❤️ Happy Birthday!");
+}
 
 setInterval(()=>{
 let heart=document.createElement("div");
@@ -130,12 +123,6 @@ heart.remove();
 },6000);
 
 },300);
-
-/* surprise */
-
-function surprise(){
-alert("I love you Prisha ❤️ Happy Birthday!");
-}
 
 </script>
 
