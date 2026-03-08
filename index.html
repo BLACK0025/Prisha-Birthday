@@ -8,15 +8,30 @@
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 text-align:center;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
 color:white;
 overflow:hidden;
+background:black;
+}
+
+/* starry background */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2}
+to{opacity:1}
 }
 
 h1{
-margin-top:70px;
+margin-top:60px;
 font-size:50px;
 }
 
@@ -28,19 +43,42 @@ line-height:1.6;
 min-height:120px;
 }
 
+/* slideshow */
+
 .slideshow{
 width:260px;
 height:260px;
 margin:30px auto;
 border-radius:20px;
 overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 .slideshow img{
 width:100%;
 height:100%;
 object-fit:cover;
+}
+
+/* envelope */
+
+.envelope{
+width:220px;
+height:140px;
+background:#ff758c;
+margin:30px auto;
+position:relative;
+cursor:pointer;
+}
+
+.envelope:before{
+content:"";
+position:absolute;
+top:-70px;
+left:0;
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+border-bottom:70px solid #ff758c;
 }
 
 button{
@@ -54,16 +92,18 @@ color:#ff4b7d;
 cursor:pointer;
 }
 
+/* hearts */
+
 .heart{
 position:absolute;
 color:white;
-font-size:22px;
+font-size:20px;
 animation:float 6s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0);opacity:1}
-100%{transform:translateY(-100vh);opacity:0}
+0%{transform:translateY(0)}
+100%{transform:translateY(-100vh)}
 }
 
 </style>
@@ -78,9 +118,11 @@ animation:float 6s linear infinite;
 <img id="slide" src="./photo1.jpg">
 </div>
 
+<div class="envelope" onclick="openLetter()"></div>
+
 <p id="message"></p>
 
-<button onclick="startMusic()">Tap for a surprise ❤️</button>
+<button onclick="startMusic()">Play our song ❤️</button>
 
 <audio id="song">
 <source src="./music.mp3" type="audio/mpeg">
@@ -88,23 +130,17 @@ animation:float 6s linear infinite;
 
 <script>
 
-/* TYPEWRITER MESSAGE */
+/* stars */
 
-let text="Prisha, the day you came into my life something quietly beautiful began. Like a soft melody that stays with the heart, you became the warmth in my days and the calm in my thoughts. Your smile carries a light that makes the ordinary feel magical. I hope this day surrounds you with happiness, love, and every beautiful thing your heart deserves. Happy Birthday my love ❤️";
-
-let i=0;
-
-function typeWriter(){
-if(i<text.length){
-document.getElementById("message").innerHTML += text.charAt(i);
-i++;
-setTimeout(typeWriter,40);
-}
+for(let i=0;i<120;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+document.body.appendChild(star);
 }
 
-typeWriter();
-
-/* SLIDESHOW */
+/* slideshow */
 
 let images=[
 "./photo1.jpg",
@@ -119,27 +155,64 @@ index=(index+1)%images.length;
 document.getElementById("slide").src=images[index];
 },3000);
 
-/* MUSIC */
+/* typewriter */
 
-function startMusic(){
-let song=document.getElementById("song");
-song.play();
-alert("I love you Prisha ❤️ Happy Birthday!");
+let text="Prisha, like the stars that quietly light up the night sky, you light up my world in ways words can barely explain. Every moment with you feels like a beautiful story unfolding. On this special day, I just want the universe to give you every happiness your heart deserves. Happy Birthday my love ❤️";
+
+let i=0;
+
+function openLetter(){
+
+if(i===0){
+typeWriter();
 }
 
-/* FLOATING HEARTS */
+}
+
+function typeWriter(){
+
+if(i<text.length){
+
+document.getElementById("message").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,40);
+
+}
+
+}
+
+/* music */
+
+function startMusic(){
+
+let song=document.getElementById("song");
+
+song.play();
+
+}
+
+/* hearts */
 
 setInterval(()=>{
+
 let heart=document.createElement("div");
+
 heart.className="heart";
+
 heart.innerHTML="❤️";
+
 heart.style.left=Math.random()*100+"vw";
+
 heart.style.fontSize=(Math.random()*20+20)+"px";
 
 document.body.appendChild(heart);
 
 setTimeout(()=>{
+
 heart.remove();
+
 },6000);
 
 },300);
