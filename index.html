@@ -152,19 +152,28 @@ heart.remove();
 function startSurprise(){
 
 let song=document.getElementById("song");
-song.play();
+song.currentTime=0;
+song.play().catch(()=>{});
 
 let message=document.getElementById("loveMessage");
 
-message.innerHTML="I LOVE YOU PRISHA ❤️";
 message.style.opacity=1;
+
+message.innerHTML="I found you...";
+
+setTimeout(()=>{
+message.innerHTML="I chose you...";
+},2000);
+
+setTimeout(()=>{
+message.innerHTML="I will always choose you ❤️";
+},4000);
 
 for(let i=0;i<40;i++){
 
 let heart=document.createElement("div");
 
 heart.innerHTML="❤️";
-
 heart.style.position="absolute";
 heart.style.left=Math.random()*100+"vw";
 heart.style.top=Math.random()*100+"vh";
