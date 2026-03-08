@@ -115,7 +115,7 @@ animation:float 6s linear infinite;
 <h1>Happy Birthday My Love 🎂</h1>
 
 <div class="slideshow">
-<img id="slide" src="./photo1.jpg">
+<img id="slide" src="./photo1.jpeg">
 </div>
 
 <div class="envelope" onclick="openLetter()"></div>
@@ -143,30 +143,24 @@ document.body.appendChild(star);
 /* slideshow */
 
 let images=[
-"./photo1.jpg",
-"./photo2.jpg",
-"./photo3.jpg"
+"./photo1.jpeg",
+"./photo2.jpeg",
+"./photo3.jpeg"
 ];
 
-let index=0;
+let text="Prisha, the day you came into my life something quietly beautiful began. Like a soft melody that stays with the heart, you became the warmth in my days and the calm in my thoughts. Your smile carries a light that makes the ordinary feel magical. Happy Birthday my love ❤️";
 
-setInterval(()=>{
-index=(index+1)%images.length;
-document.getElementById("slide").src=images[index];
-},3000);
+let i = 0;
 
-/* typewriter */
-
-let text="Prisha, like the stars that quietly light up the night sky, you light up my world in ways words can barely explain. Every moment with you feels like a beautiful story unfolding. On this special day, I just want the universe to give you every happiness your heart deserves. Happy Birthday my love ❤️";
-
-let i=0;
-
-function openLetter(){
-
-if(i===0){
-typeWriter();
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40);
+  }
 }
 
+typeWriter();
 }
 
 function typeWriter(){
